@@ -139,7 +139,12 @@ angular.module('dcmreaderApp')
       if(!is_little_endian && is_tag_group2(tag, is_little_endian)){
         // group 2 is little endian explicit
         is_little_endian = true;
+        is_implicit = false;
         tag = read_tag_string(dv, data_element_offset, is_little_endian);
+      } else {
+        if(is_tag_group2(tag, is_little_endian)){
+          is_implicit = false;
+        }
       }
       // next, read the vr, unless if we have implicit encoding, or if the tag implies implicit encoding
 

@@ -4,9 +4,10 @@ angular.module('dcmreaderApp')
   .factory('DicomPixelReader', function () {
     // Service logic
     var pixel_start_offset, total_pixels;
-    
+
     var iterate_pixel_data = function(dv,options){
       var rgb_method;
+      console.log('pixel', options)
       switch(options.is_planar_configuration){
         case 0:
           rgb_method = nonplanar_rgb;
@@ -14,7 +15,7 @@ angular.module('dcmreaderApp')
         case 1:
           rgb_method = planar_rgb
         break;
-        default:          
+        default:
           throw new Error('is_planar_configuration not set!');
         break;
       }
@@ -23,7 +24,7 @@ angular.module('dcmreaderApp')
       // support different byte allocation settings and rgb vs grayscale settings
       var pixel_array = [];
       var pixel_clamped_array = new Uint8ClampedArray(total_pixels*4); // rgb+alpha per pixel
-      
+
       var rgb_offset, offsetCounter = 0;
       if (dv.byteLength<total_pixels*3+pixel_start_offset){
         throw new Error('pixel iteration will take us beyond the size of the data view')
@@ -39,11 +40,12 @@ angular.module('dcmreaderApp')
             ], offsetCounter);
         offsetCounter+=4;
       }
+      console.log('clamped', pixel_clamped_array.length)
       return pixel_clamped_array;
     }
     var nonplanar_rgb = function(pixel_index){
       // pixels look like
-      // RGBRGBRGB...  
+      // RGBRGBRGB...
       var r_pixel = pixel_start_offset + pixel_index*3;
       var g_pixel = r_pixel+1;
       var b_pixel = r_pixel+2;
@@ -60,16 +62,35 @@ angular.module('dcmreaderApp')
 
     // Public API here
     return {
-      read : function(dv, tag_data, options){
-        options = _.defaults(options||{}, {
+      read : function(dv, value_offset, value_length, FILE_SETTINGS){
+        var options = _.defaults(FILE_SETTINGS||{}, {
           is_little_endian: false,
           is_planar_configuration: 0
         })
-        pixel_start_offset = tag_data.value_offset;
-        total_pixels = tag_data.length/3; // 3 values per pixel
-        // TODO:
-        // support different byte allocation settings and rgb vs grayscale settings
-        return iterate_pixel_data(dv,options);
+        pixel_start_offset = value_offset;
+        console.log('photo', FILE_SETTINGS.photometric_interpretation);
+        switch(FILE_SETTINGS.photometric_interpretation){
+          case 'RGB':
+            total_pixels = value_length/3; // 3 values per pixel
+            return iterate_pixel_data(dv,options);
+          break;
+          case 'MONOCHROME2':
+            total_pixels = value_length;
+            // TODO:
+            // support different byte allocation settings and rgb vs grayscale settings
+            var pixel_array = [];
+            var pixel_clamped_array = new Uint8ClampedArray(total_pixels*4); // rgb+alpha per pixel
+            for (var i=0; i<total_pixels; i++){
+              pixel_clamped_array.set([
+                    dv.getUint8(pixel_start_offset+i, options.is_little_endian),
+                    dv.getUint8(pixel_start_offset+i, options.is_little_endian),
+                    dv.getUint8(pixel_start_offset+i, options.is_little_endian),
+                    255
+                  ], i*4);
+            }
+            return pixel_clamped_array
+          break;
+        }
       }
     };
   });

@@ -10,10 +10,12 @@ angular.module('dcmreaderApp')
       scope.is_slide_out = false;
         scope.slide = function(){
           if(!scope.is_slide_out){
-            element.find('.sidebar-inner').css('left', 0);
+            element.find('.sidebar-inner').removeClass('left-sidebar-closed').addClass('left-sidebar-opened')
+            element.css('z-index', '9001');
           } else {
-            element.find('.sidebar-inner').css('left', '97.5%');
-            element.css('z-index', '10');
+            element.find('.sidebar-inner').addClass('left-sidebar-closed').removeClass('left-sidebar-opened')
+
+            element.css('z-index', '8999');
           }
           scope.is_slide_out = !scope.is_slide_out;
         }

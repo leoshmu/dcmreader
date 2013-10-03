@@ -1,1 +1,96 @@
-@import "compass_twitter_bootstrap";
+// @import "compass_twitter_bootstrap";
+@import "compass";
+$info-color-edge:#C6EBF3;
+$info-color-fill: #DEEFF8;
+
+.container {
+	max-width:1400px;
+}
+.image-container {
+	max-height:1000px;
+}
+.no-padding-left {
+	padding-left: 0;
+}
+.no-padding-right {
+	padding-right:0
+}
+.sliding-drawer {
+	overflow:hidden;
+z-index: 9999;
+	position:absolute;
+	right:0px;
+	height:100%;
+
+
+
+}
+.sidebar-content {
+	overflow:hidden;
+	height:100%;
+}
+
+.sidebar-inner {
+	position:absolute;
+	height:100%;
+	width:100%;
+
+	-webkit-transition: left linear 1s;
+  -moz-transition: left linear 1s;
+  -ms-transition: left linear 1s;
+  -o-transition: left linear 1s;
+  transition: left linear 1s;
+}
+.metadata-sidebar {
+	position:absolute;
+	left:20px;
+	width:97.5%;
+	height:100%;
+	z-index:10000;
+}
+.no-overflow {
+	overflow:auto;
+}
+
+.sidebar-slide {
+	display:inline-block;
+	width:100%;
+	height:100%;
+	.panel {
+		height: 100%!important;
+	}
+}
+
+.sidebar-toggle {
+	display:inline-block;
+	position: absolute;
+	left:0;
+	z-index:9999;
+	width:5%;
+	top:50%;
+	background:$info-color-fill;
+	border: solid 1px $info-color-edge;
+	@include border-bottom-left-radius(2px);
+	@include border-top-left-radius(2px);
+}
+.left-sidebar-opened {
+	z-index:10000;
+	left:0;
+}
+.left-sidebar-closed {
+	z-index:8999;
+	left:97.5%
+}
+svg {
+	z-index: 9000;
+	position:absolute;
+	height:100%;
+	width:97.5%
+}
+
+.analysis-meta-data {
+	position:absolute;
+	margin-top:10px;
+	left:10px;
+	opacity: 0.95;
+}

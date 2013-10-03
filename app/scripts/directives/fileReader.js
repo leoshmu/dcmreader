@@ -71,6 +71,7 @@ angular.module('dcmreaderApp')
             	var file = ev.target.files[0];
         		processFileByReader(file, 'buffer').then(
                     function(result){
+
                         var dicom_file = new DicomFile(result);
                         var file_analyze = new DopplerFileAnalyzer(dicom_file);
                         var newFile = {

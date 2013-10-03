@@ -12,30 +12,35 @@ angular.module('dcmreaderApp')
       load_from_buffer: function (array_buffer_result) {
         FILE_SETTINGS = {
           is_little_endian: true,
-          is_implicit: false,
+          is_implicit: true,
           is_planar_configuration: 0
         }
         // default little endian with every load of a file
         IS_LITTLE_ENDIAN = true;
-        // start with explicit encoding, that is what is assumed before transfer
+        // start with implicit encoding, that is what is assumed before transfer
         // syntax is set (I THINK)
-        IS_IMPLICIT = false;
+        IS_IMPLICIT = true;
         var dicom_hash = {};
         var dicom_loading_progress = {
           missing_tags: []
         }
         var dicom_dv = new DataView(array_buffer_result);
+        console.log(dicom_dv.byteLength)
         // check that the DICOM file starts correctly
         if (!DicomTagParser.check_start_tag(dicom_dv)){
-          return false;
+          // return false;
+          var offset = 0;
+        } else {
+
+          var offset = DicomConstants.POST_HEADER_TAG_OFFSET;
         }
         // the DICOM file starts correctly, start reading real data
         // after the header
-        var offset = DicomConstants.POST_HEADER_TAG_OFFSET;
         //iterate through tag by tag
         while (offset< dicom_dv.byteLength){
 
           var tag_object = DicomTagParser.parse_data_element(dicom_dv, offset, FILE_SETTINGS);
+
           if(tag_object.vr == 'SQ'){
             console.log(tag_object)
           }

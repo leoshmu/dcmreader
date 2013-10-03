@@ -5,11 +5,12 @@ angular.module('dcmreaderApp')
     'FileManager',
     '$q',
     '$timeout',
+    'DicomConstants',
     'DicomFile',
     'DopplerFileAnalyzer',
     'ValueRepresentationDictionary',
     'TagDictionary',
-    function (FileManager, $q, $timeout, DicomFile, DopplerFileAnalyzer, ValueRepresentationDictionary, TagDictionary) {
+    function (FileManager, $q, $timeout, DicomConstants, DicomFile, DopplerFileAnalyzer, ValueRepresentationDictionary, TagDictionary) {
         var processFileByReader = function(file, type){
     		var deferred = $q.defer();
             var fileReader = new FileReader();
@@ -71,9 +72,16 @@ angular.module('dcmreaderApp')
             	var file = ev.target.files[0];
         		processFileByReader(file, 'buffer').then(
                     function(result){
+                        var dicom_file, file_analyze;
+                        dicom_file = new DicomFile(result);
 
-                        var dicom_file = new DicomFile(result);
-                        var file_analyze = new DopplerFileAnalyzer(dicom_file);
+                        // if there is a sequence of ultrasound regions
+                        // then do some image analysis
+                        // TODO: make the Analysis step more general and handle type
+                        // of analysis inside that more general Analysis service
+                        if (dicom_file[DicomConstants.SEQUENCE_OF_ULTRASOUND_REGIONS_TAG]){
+                            var file_analyze = new DopplerFileAnalyzer(dicom_file);
+                        }
                         var newFile = {
                             id: _.uniqueId('file_'),
                             lastModifiedDate: file.lastModifiedDate,

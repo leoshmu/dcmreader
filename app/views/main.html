@@ -48,7 +48,7 @@
 				<div class="panel-heading"><h3 class="panel-title">Image</h3></div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="analysis-meta-data" doppler-analysis-meta-data></div>
+						<div ng-if="fileManager.getActive().analysis" class="analysis-meta-data" doppler-analysis-meta-data></div>
 						<sliding-drawer class="col-lg-8 sliding-drawer">
 							<div class="metadata-content">
 								<dcm-meta-data-table metadata="fileManager.getActive().data"></dcm-meta-data-table>
@@ -57,7 +57,7 @@
 						<div class="image-container">
 
 							<img  style="position:absolute; top:0" ng-src="{{fileManager.getActive().data.pngStream}}"></img>
-							<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+							<svg ng-if="fileManager.getActive().analysis" xmlns="http://www.w3.org/2000/svg" version="1.1">
 								<ng-fitter limit-x="true" fit = "fileManager.getActive().analysis.e_wave.pixel_data.start"></ng-fitter>
         				<ng-fitter fit = "fileManager.getActive().analysis.e_wave.pixel_data.peak" ></ng-fitter>
         				<ng-fitter limit-x="true" fit = "fileManager.getActive().analysis.e_wave.pixel_data.end"></ng-fitter>

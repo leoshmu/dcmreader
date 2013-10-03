@@ -8,13 +8,19 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   'app/components/angular/angular.js',
+  'app/components/underscore/underscore.js',
   'app/components/angular-mocks/angular-mocks.js',
+  {pattern:'samples/**',watched: false, included: false, served: true},
   'app/scripts/*.js',
   'app/scripts/**/*.js',
+  'app/views/*.html',
   'test/mock/**/*.js',
   'test/spec/**/*.js'
 ];
 
+preprocessors = {
+	'app/views/*.html':'html2js'
+}
 // list of files to exclude
 exclude = [];
 

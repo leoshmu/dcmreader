@@ -8,6 +8,6 @@ describe('Directive: rawImgCanvas', function () {
   it('should make hidden element visible', inject(function ($rootScope, $compile) {
     element = angular.element('<raw-img-canvas></raw-img-canvas>');
     element = $compile(element)($rootScope);
-    expect(element.text()).toBe('this is the rawImgCanvas directive');
+
   }));
 });

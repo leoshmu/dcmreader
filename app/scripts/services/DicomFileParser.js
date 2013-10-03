@@ -66,7 +66,6 @@ angular.module('dcmreaderApp')
 
             //offset = tag_value.size
 
-
             if(tag_object.tag == "0018,6011"){
               console.log(tag_object);
             }
@@ -79,7 +78,7 @@ angular.module('dcmreaderApp')
               // console.log('treu', tag_object.value_field)
               FILE_SETTINGS.photometric_interpretation = tag_object.value_field.replace(/[^0-9^.^[a-z]]*$/, '');
             }
-
+            //
             if(tag_object.tag == DicomConstants.TRANSFER_SYNTAX_UID_TAG){
               FILE_SETTINGS.transfer_syntax_uid = tag_object.value_field.replace(/[^0-9^.]*$/, '');
               switch(tag_object.value_field.replace(/[^0-9^.]*$/, '')){
@@ -90,6 +89,8 @@ angular.module('dcmreaderApp')
                   FILE_SETTINGS.is_implicit = true;
                 break;
                 case DicomConstants.RAW_EXPLICIT_LITTLE:
+                case DicomConstants.JPEG_70_TRANSFER_SYNTAX:
+                  //ALL COMPRESSED SYNTAXES USE EXPLICIT VR LITTLE ENDIAN
                   IS_LITTLE_ENDIAN = true;
                   IS_IMPLICIT = false;
                   FILE_SETTINGS.is_little_endian = true;
@@ -110,7 +111,7 @@ angular.module('dcmreaderApp')
             dicom_hash[tag_object.tag] = tag_object;
           }
         }
-        console.log(dicom_loading_progress.missing_tags)
+        console.log(dicom_hash, FILE_SETTINGS)
         return dicom_hash;
       }
     };

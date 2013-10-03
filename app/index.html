@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -27,9 +29,11 @@
     <!-- Add your site or application content here -->
     <div ng-view></div>
 
+    <script src="components/jquery/jquery.js"></script>
     <script src="components/angular/angular.js"></script>
     <script src="components/underscore/underscore.js"></script>
-
+    <script src="components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="components/d3.v3/d3.v3.js" charset="utf-8"></script>
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -42,14 +46,16 @@
     <script src="scripts/services/DicomTagParser.js"></script>
     <script src="scripts/services/DicomConstants.js"></script>
     <script src="scripts/services/DicomPixelReader.js"></script>
+    <script src="scripts/directives/slidingDrawer.js"></script>
+    <script src="scripts/services/FileManager.js"></script>
+    <script src="scripts/directives/ng-fitter.js"></script>
+    <script src="scripts/directives/dcmMetaDataTable.js"></script>
+    <script src="scripts/directives/eWaveFit.js"></script>
+    <script src="scripts/services/DopplerFileAnalyzer.js"></script>
+    <script src="scripts/services/TriangleAnalysis.js"></script>
+    <script src="scripts/services/PDFAnalysis.js"></script>
+    <script src="scripts/directives/DopplerAnalysisMetaData.js"></script>
     <!-- endbuild -->
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
   </body>
 </html>

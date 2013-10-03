@@ -6,7 +6,7 @@ angular.module('dcmreaderApp')
     // ...
 
     var loadedFilesArray = [];
-    var activeFileIndex = 0;
+    var activeFileIndex = undefined;
     // Public API here
     return {
       get: function () {

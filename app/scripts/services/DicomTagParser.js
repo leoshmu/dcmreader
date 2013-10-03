@@ -142,7 +142,7 @@ angular.module('dcmreaderApp')
         is_implicit = false;
         tag = read_tag_string(dv, data_element_offset, is_little_endian);
       } else {
-        if(is_tag_group2(tag, is_little_endian)){
+        if(is_implicit && is_tag_group2(tag, is_little_endian)){
           is_implicit = false;
         }
       }

@@ -1,0 +1,72 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Doppler Data</h3>
+  </div>
+	<div class="panel-body row">
+		<div class="col-sm-6 col-md-6">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Triangle</h3>
+				  </div>
+			    <table class="table">
+				  	<thead>
+				  		<tr>
+				  			<th>Index</th>
+				  			<th>Value</th>
+				  		</tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+				  			<td colspan="2">E-wave</td>
+				  		</tr>
+				  		<tr>
+				  			<td>AT</td>
+				  			<td>{{fileManager.getActive().analysis.e_wave.indexes.triangle['AT']}} {{fileManager.getActive().analysis.time_units}}</td>
+				  		</tr>
+				  		<tr>
+				  			<td>DT</td>
+				  			<td>{{fileManager.getActive().analysis.e_wave.indexes.triangle['DT']}} {{fileManager.getActive().analysis.time_units}}</td>
+				  		</tr>
+				  		<tr>
+				  			<td>Epeak</td>
+				  			<td>{{fileManager.getActive().analysis.e_wave.indexes.triangle['MaxV']}} {{fileManager.getActive().analysis.velocity_units}}</td>
+				  		</tr>
+				  	</tbody>
+				  </table>
+				</div>
+		</div>
+		<div class="col-sm-6 col-md-6">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">PDF</h3>
+			  </div>
+		    <table class="table">
+			  	<thead>
+			  		<tr>
+			  			<th>Index</th>
+			  			<th>Value</th>
+			  		</tr>
+			  	</thead>
+			  	<tbody>
+			  		<tr>
+			  			<td colspan="2">E-wave</td>
+			  		</tr>
+			  		<tr>
+			  			<td>c</td>
+			  			<td>{{fileManager.getActive().analysis.e_wave.indexes.pdf['c']}}</td>
+			  		</tr>
+			  		<tr>
+			  			<td>k</td>
+			  			<td>{{fileManager.getActive().analysis.e_wave.indexes.pdf['k']}}</td>
+			  		</tr>
+			  		<tr>
+			  			<td>x0</td>
+			  			<td>{{fileManager.getActive().analysis.e_wave.indexes.pdf['x0']}}</td>
+			  		</tr>
+			  	</tbody>
+			  </table>
+			</div>
+		</div>
+	</div>
+
+</div>

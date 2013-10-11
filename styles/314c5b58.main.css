@@ -1,0 +1,117 @@
+/* line 6, ../../app/styles/main.scss */
+.container {
+  max-width: 1400px;
+}
+
+/* line 9, ../../app/styles/main.scss */
+.image-container {
+  max-height: 1000px;
+}
+
+/* line 12, ../../app/styles/main.scss */
+.no-padding-left {
+  padding-left: 0;
+}
+
+/* line 15, ../../app/styles/main.scss */
+.no-padding-right {
+  padding-right: 0;
+}
+
+/* line 18, ../../app/styles/main.scss */
+.sliding-drawer {
+  overflow: hidden;
+  z-index: 9999;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+}
+
+/* line 28, ../../app/styles/main.scss */
+.sidebar-content {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* line 33, ../../app/styles/main.scss */
+.sidebar-inner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: left linear 1s;
+  -moz-transition: left linear 1s;
+  -ms-transition: left linear 1s;
+  -o-transition: left linear 1s;
+  transition: left linear 1s;
+}
+
+/* line 44, ../../app/styles/main.scss */
+.metadata-sidebar {
+  position: absolute;
+  left: 20px;
+  width: 97.5%;
+  height: 100%;
+  z-index: 10000;
+}
+
+/* line 51, ../../app/styles/main.scss */
+.no-overflow {
+  overflow: auto;
+}
+
+/* line 55, ../../app/styles/main.scss */
+.sidebar-slide {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+/* line 59, ../../app/styles/main.scss */
+.sidebar-slide .panel {
+  height: 100% !important;
+}
+
+/* line 64, ../../app/styles/main.scss */
+.sidebar-toggle {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  z-index: 9999;
+  width: 5%;
+  top: 50%;
+  background: #deeff8;
+  border: solid 1px #c6ebf3;
+  -moz-border-radius-bottomleft: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-radius-topleft: 2px;
+  -webkit-border-top-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+/* line 76, ../../app/styles/main.scss */
+.left-sidebar-opened {
+  z-index: 10000;
+  left: 0;
+}
+
+/* line 80, ../../app/styles/main.scss */
+.left-sidebar-closed {
+  z-index: 8999;
+  left: 97.5%;
+}
+
+/* line 84, ../../app/styles/main.scss */
+svg {
+  z-index: 9000;
+  position: absolute;
+  height: 100%;
+  width: 97.5%;
+}
+
+/* line 91, ../../app/styles/main.scss */
+.analysis-meta-data {
+  position: absolute;
+  margin-top: 10px;
+  left: 10px;
+  opacity: 0.95;
+}
